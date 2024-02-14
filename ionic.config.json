@@ -1,0 +1,7 @@
+{
+  "name": "CampusConnect",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
