@@ -31,7 +31,7 @@ ion-tab-bar {
 }
 
 ion-tab-button {
-  --color-selected: #007bff;
+  --color-selected: #f8f8f8;
   --color: #333;
 }
 
@@ -46,7 +46,6 @@ ion-content.bground {
   font-family: Arial, sans-serif;
 }
 
-// Apply custom colors to Ionic components
 ion-header {
   --ion-background-color: var(--primary-color);
 }
@@ -55,12 +54,6 @@ ion-toolbar {
   --background: transparent;
   color: var(--headerTextColor);
   padding: 10px;
-}
-
-// Remove the line between toolbar and content
-ion-header::after,
-ion-toolbar::after {
-  display: none !important;
 }
 
 .project-card {
@@ -87,7 +80,7 @@ ion-toolbar::after {
 }
 
 fieldset {
-  border: 1px solid var(--black); /* Set the border to a single black line */
+  border: 1px solid var(--black);
   padding: 10px;
 }
 
