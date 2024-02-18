@@ -99,3 +99,7 @@ td {
 a {
   color: var(--headerTextColor);
 }
+
+.transparent-datetime {
+  --background: transparent;
+}
