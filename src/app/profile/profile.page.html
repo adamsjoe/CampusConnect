@@ -1,13 +1,56 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>profile</ion-title>
+  <ion-toolbar style="--background: transparent">
+    <ion-title>Profile</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="bground">
   <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">profile</ion-title>
+    <ion-toolbar style="--background: transparent">
+      <ion-title size="large">Profile</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <div id="container">
+    <strong>Ready to create an app?</strong>
+    <p>
+      Start with Ionic
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://ionicframework.com/docs/components"
+        >UI Components</a
+      >
+    </p>
+  </div>
+  <div id="aboutApp" *ngIf="aboutInfo">
+    <fieldset>
+      <legend>About This App</legend>
+      <table>
+        <tr>
+          <td><b>Version:</b></td>
+          <td>{{aboutInfo[0].version}}</td>
+        </tr>
+        <tr>
+          <td><b>Author:</b></td>
+          <td>{{aboutInfo[0].author}}</td>
+        </tr>
+        <tr>
+          <td><b>Purpose:</b></td>
+          <td>{{aboutInfo[0].purpose}}</td>
+        </tr>
+        <tr>
+          <td>
+            <b>Credits:</b>
+          </td>
+          <td>
+            <b>{{aboutInfo[0].credits.name}}:</b
+            ><a href="{{aboutInfo[0].credits.url}}"
+              >{{aboutInfo[0].credits.desc}}</a
+            >
+          </td>
+        </tr>
+      </table>
+    </fieldset>
+  </div>
 </ion-content>
