@@ -18,7 +18,7 @@ export class LoginPage implements OnInit {
   login() {
     if (this.email === 'user' && this.password === 'password') {
       // Navigate to the home page after successful login
-      this.router.navigate(['/home']);
+      this.router.navigate(['/tabs/home']);
     } else {
       alert('Invalid username or password');
     }
