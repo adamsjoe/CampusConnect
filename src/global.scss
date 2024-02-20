@@ -13,6 +13,7 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+@import url("https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Montserrat&display=swap");
 
 // Define color variables
 :root {
@@ -24,6 +25,52 @@
   --neutral-color: #cccccc;
   --black: #000000;
   --headerTextColor: #ffffff;
+}
+
+.heading {
+  font-family: "Figtree", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 40px;
+  text-align: center;
+}
+
+.image-container {
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: -1;
+}
+
+.form-container {
+  --background: transparent;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 50px;
+}
+
+.transparent-input {
+  --background: transparent !important;
+  --color: var(--black) !important; /* Adjust font color if needed */
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.input-label {
+  color: var(--black); /* Input label color */
+}
+
+.login-button {
+  margin-top: 20px; /* Adjust margin as needed */
 }
 
 ion-tab-bar {
