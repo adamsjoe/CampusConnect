@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title> {{ desc }} </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()" class="modalBeGone">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      {{ reverseDate(date) }}
+    </ion-card-header>
+    <ion-card-content
+      [style.color]="textColor"
+      [style.background-color]="backgroundColor"
+    >
+      This is a: {{ type }} <br />
+      Message Reads: {{ desc }}
+    </ion-card-content>
+  </ion-card>
+</ion-content>

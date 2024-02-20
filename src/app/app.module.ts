@@ -10,11 +10,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { getApp, initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from 'src/environments/environment';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { EventModalComponent } from './event-modal/event-modal.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, EventModalComponent],
   imports: [
     BrowserModule,
+    IonicModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),

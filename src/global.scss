@@ -150,3 +150,8 @@ a {
 .transparent-datetime {
   --background: transparent;
 }
+
+.modalBeGone {
+  --color-selected: var(--ion-bg-color);
+  --color: var(--accent-color);
+}

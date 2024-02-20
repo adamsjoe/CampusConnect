@@ -13,10 +13,13 @@
 
   <div id="container">
     <ion-datetime
+      [showDefaultTitle]="true"
       presentation="date"
-      value="2023-01-01"
+      value="2024-01-01"
       [highlightedDates]="highlightedDates"
       class="transparent-datetime"
+      (ionChange)="dateSelected($event)"
     ></ion-datetime>
   </div>
+  <ion-button>Add Event</ion-button>
 </ion-content>
