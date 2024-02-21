@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-// import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-
+import { initializeApp } from 'firebase/app';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { environment } from 'src/environments/environment';
+import { UserService } from '../services/currentUser.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -10,28 +12,30 @@ import { Router } from '@angular/router';
 export class LoginPage implements OnInit {
   email: string = '';
   password: string = '';
+  UserService: any;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private userService: UserService) {}
 
   ngOnInit() {}
 
   login() {
-    if (this.email === 'user' && this.password === 'password') {
-      // Navigate to the home page after successful login
-      this.router.navigate(['/tabs/home']);
-    } else {
-      alert('Invalid username or password');
-    }
-    // const auth = getAuth();
-    // signInWithEmailAndPassword(auth, this.email, this.password)
-    //   .then((userCredential) => {
-    //     // Signed in
-    //     const user = userCredential.user;
-    //     // ...
-    //   })
-    //   .catch((error) => {
-    //     const errorCode = error.code;
-    //     const errorMessage = error.message;
-    //   });
+    const app = initializeApp(environment.firebase);
+    const auth = getAuth();
+
+    signInWithEmailAndPassword(auth, this.email, this.password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+
+        this.userService.setUser(user.uid);
+        this.router.navigate(['/tabs/home']);
+      })
+      .catch((error) => {
+        alert('Invalid username or password');
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log('error code : ', errorCode);
+        console.log('error message : ', errorMessage);
+      });
   }
 }
