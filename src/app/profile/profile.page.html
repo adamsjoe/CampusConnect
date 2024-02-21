@@ -11,18 +11,31 @@
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>
-      Start with Ionic
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://ionicframework.com/docs/components"
-        >UI Components</a
-      >
-    </p>
+  <div id="aboutApp" *ngIf="profileInfo">
+    <img src="{{profileInfo.profilePic}}" style="width: 50%" />
+    <fieldset>
+      <legend>Profile</legend>
+      <table>
+        <tr>
+          <td><b>Name:</b>></td>
+          <td>{{profileInfo.firstName}} {{profileInfo.lastName}}</td>
+        </tr>
+        <tr>
+          <td><b>Email:</b></td>
+          <td>{{profileInfo.email}}</td>
+        </tr>
+        <tr>
+          <td><b>Institution:</b></td>
+          <td>{{profileInfo.institution}}</td>
+        </tr>
+        <tr>
+          <td><b>Admin:</b></td>
+          <td>{{profileInfo.isAdmin}}</td>
+        </tr>
+      </table>
+    </fieldset>
   </div>
+
   <div id="aboutApp" *ngIf="aboutInfo">
     <fieldset>
       <legend>About This App</legend>

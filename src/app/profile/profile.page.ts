@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { firebaseService } from '../services/firebase.service';
+import { aboutAppService } from '../services/aboutApp.service';
+import { profileService } from '../services/profile.service';
+import { UserService } from '../services/currentUser.service';
 
 @Component({
   selector: 'app-profile',
@@ -8,9 +10,31 @@ import { firebaseService } from '../services/firebase.service';
 })
 export class ProfilePage {
   aboutInfo: any;
-  constructor(private firbaseService: firebaseService) {
-    firbaseService.getAboutInfo().subscribe((data) => {
+  UserService: any;
+  profileInfo: any;
+
+  constructor(
+    private aboutApp: aboutAppService,
+    profiles: profileService,
+    private userService: UserService
+  ) {
+    aboutApp.getAboutInfo().subscribe((data) => {
       this.aboutInfo = data;
+    });
+    const user = this.userService.getUser();
+
+    profiles.getProfileInfo(user).subscribe((data) => {
+      this.profileInfo = data;
+
+      // if there is no image, replace with a default
+      if (data.profilePic === '') {
+        data.profilePic = 'assets/img/missingImage.png';
+      }
+
+      // if there is no institution, replace with a default
+      if (data.institution === '') {
+        data.institution = 'None on file - fake student!';
+      }
     });
   }
 }
