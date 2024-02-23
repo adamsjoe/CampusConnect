@@ -1,26 +1,24 @@
 <ion-header [translucent]="true">
   <ion-toolbar style="--background: transparent">
-    <ion-title>Blank</ion-title>
+    <ion-title>Activity Feed</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="bground">
   <ion-header collapse="condense">
     <ion-toolbar style="--background: transparent">
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">Activity Feed</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>
-      Start with Ionic
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://ionicframework.com/docs/components"
-        >UI Components</a
-      >
-    </p>
+    <ion-card *ngFor="let post of allPosts">
+      <ion-card-header>{{post.title}}</ion-card-header>
+      <ion-card-content>
+        <p>{{post.body}}</p>
+        <p>{{post.type}}</p>
+        <p>{{post.postTime}}</p>
+      </ion-card-content>
+    </ion-card>
   </div>
 </ion-content>
