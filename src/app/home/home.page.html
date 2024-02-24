@@ -1,9 +1,3 @@
-<ion-header [translucent]="true">
-  <ion-toolbar style="--background: transparent">
-    <ion-title>Activity Feed</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true" class="bground">
   <ion-header collapse="condense">
     <ion-toolbar style="--background: transparent">
@@ -13,12 +7,20 @@
 
   <div id="container">
     <ion-card *ngFor="let post of allPosts">
-      <ion-card-header>{{post.title}}</ion-card-header>
+      <ion-card-header class="{{post.type}}">{{post.title}}</ion-card-header>
       <ion-card-content>
-        <p>{{post.body}}</p>
-        <p>{{post.type}}</p>
-        <p>{{post.postTime}}</p>
+        <p>{{post.postBody}}</p>
       </ion-card-content>
+      <ion-row class="cardfooter">
+        <ion-col>
+          <p>{{post.postTime}}</p>
+        </ion-col>
+      </ion-row>
     </ion-card>
   </div>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add" (click)="insertPost()"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
