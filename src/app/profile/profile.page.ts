@@ -26,6 +26,7 @@ export class ProfilePage {
     profiles.getProfileInfo(user).subscribe((data) => {
       this.profileInfo = data;
 
+      console.log('user data', data);
       // if there is no image, replace with a default
       if (data.profilePic === '') {
         data.profilePic = 'assets/img/missingImage.png';
