@@ -1,14 +1,8 @@
 import { Component } from '@angular/core';
 import { PostsService } from '../services/posts.service';
 import { UserService } from '../services/currentUser.service';
-import {
-  Firestore,
-  collection,
-  collectionData,
-  doc,
-  getDoc,
-} from '@angular/fire/firestore';
-import { AlertController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
+import { NewPostModalComponent } from '../new-post-modal/new-post-modal.component';
 
 @Component({
   selector: 'app-home',
@@ -17,14 +11,15 @@ import { AlertController } from '@ionic/angular';
 })
 export class HomePage {
   allPosts: any;
+  postsService: any;
 
   constructor(
     private posts: PostsService,
     private userService: UserService,
-    private addPost: AlertController
+    private modalController: ModalController
   ) {
     const user = this.userService.getUser();
-    console.log('you are : ', user);
+    console.log('you are : ', user); // remove me soon
 
     posts.getPosts().subscribe((data) => {
       this.allPosts = data.map((post: { postTime: { toDate: () => any } }) => {
@@ -58,42 +53,16 @@ export class HomePage {
     const user = this.userService.getUser();
     const postDate = new Date();
 
-    const prompt = await this.addPost.create({
-      header: 'Add New Post',
-      message: 'Insert New Post Here',
-      inputs: [
-        { name: 'title', placeholder: 'Post title' },
-        { name: 'body', placeholder: 'Please enter message here' },
-        {
-          name: 'type',
-          type: 'radio',
-          label: 'General',
-          value: 'general',
-          checked: true,
-        },
-        {
-          name: 'type',
-          type: 'radio',
-          label: 'Departmental',
-          value: 'departmental',
-        },
-      ],
-      buttons: [
-        { text: 'Cancel' },
-        {
-          text: 'Add Post',
-          handler: (evnt) => {
-            this.posts.insertPost({
-              postBody: evnt.body,
-              postTime: postDate,
-              title: evnt.title,
-              type: evnt.type,
-              userId: user,
-            });
-          },
-        },
-      ],
+    const modal = await this.modalController.create({
+      component: NewPostModalComponent,
     });
-    prompt.present();
+    await modal.present();
+
+    const { data } = await modal.onDidDismiss();
+    if (data) {
+      console.log('hello');
+      console.log('data is ', data);
+      this.posts.insertPost(data);
+    }
   }
 }
