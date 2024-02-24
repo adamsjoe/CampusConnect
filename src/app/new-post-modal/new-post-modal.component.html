@@ -43,7 +43,10 @@
 
 <ion-footer>
   <ion-toolbar>
-    <ion-button expand="block" (click)="displayNewPostModal()"
+    <ion-button
+      expand="block"
+      (click)="displayNewPostModal()"
+      [disabled]="!isFormValid()"
       >Submit</ion-button
     >
     <ion-button expand="block" (click)="dismissModal()">Cancel</ion-button>

@@ -18,10 +18,16 @@ export class NewPostModalComponent {
   ) {}
 
   dismissModal() {
+    /**
+     * Close the modal
+     */
     this.newPostModal.dismiss();
   }
 
   displayNewPostModal() {
+    /**
+     * Create a new object to hold the data we have entered for this post.
+     */
     const post = {
       postTitle: this.postTitle,
       postMessage: this.postMessage,
@@ -32,5 +38,15 @@ export class NewPostModalComponent {
 
     console.log('post is ', post);
     this.newPostModal.dismiss(post);
+  }
+
+  isFormValid(): boolean {
+    /**
+     * The submit button is disabled unless the user enters at least the following fields
+     * Added the trim method as I am the sorta sick person who would enter whitespace to break this.
+     */
+    return (
+      !!this.postTitle.trim() && !!this.postMessage.trim() && !!this.postType
+    );
   }
 }
