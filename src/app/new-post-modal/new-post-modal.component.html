@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add New Post</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()" class="modalBeGone"
+        >Close</ion-button
+      >
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header> Add New Post </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Title</ion-label>
+        <ion-input
+          name="postTitle"
+          type="text"
+          [(ngModel)]="postTitle"
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Message</ion-label>
+        <ion-textarea
+          name="postMessage"
+          [(ngModel)]="postMessage"
+        ></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label>Type</ion-label>
+        <ion-select name="postType" [(ngModel)]="postType">
+          <ion-select-option value="general">General</ion-select-option>
+          <ion-select-option value="departmental"
+            >Departmental</ion-select-option
+          >
+        </ion-select>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button expand="block" (click)="displayNewPostModal()"
+      >Submit</ion-button
+    >
+    <ion-button expand="block" (click)="dismissModal()">Cancel</ion-button>
+  </ion-toolbar>
+</ion-footer>
