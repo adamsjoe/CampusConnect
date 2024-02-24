@@ -8,6 +8,7 @@ import {
   doc,
   getDoc,
 } from '@angular/fire/firestore';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -17,8 +18,13 @@ import {
 export class HomePage {
   allPosts: any;
 
-  constructor(private posts: PostsService, private userService: UserService) {
+  constructor(
+    private posts: PostsService,
+    private userService: UserService,
+    private addPost: AlertController
+  ) {
     const user = this.userService.getUser();
+    console.log('you are : ', user);
 
     posts.getPosts().subscribe((data) => {
       this.allPosts = data.map((post: { postTime: { toDate: () => any } }) => {
@@ -46,5 +52,48 @@ export class HomePage {
     const formattedSeconds = seconds < 10 ? '0' + seconds : seconds;
 
     return `${formattedDay}/${formattedMonth}/${year} ${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+  }
+
+  async insertPost() {
+    const user = this.userService.getUser();
+    const postDate = new Date();
+
+    const prompt = await this.addPost.create({
+      header: 'Add New Post',
+      message: 'Insert New Post Here',
+      inputs: [
+        { name: 'title', placeholder: 'Post title' },
+        { name: 'body', placeholder: 'Please enter message here' },
+        {
+          name: 'type',
+          type: 'radio',
+          label: 'General',
+          value: 'general',
+          checked: true,
+        },
+        {
+          name: 'type',
+          type: 'radio',
+          label: 'Departmental',
+          value: 'departmental',
+        },
+      ],
+      buttons: [
+        { text: 'Cancel' },
+        {
+          text: 'Add Post',
+          handler: (evnt) => {
+            this.posts.insertPost({
+              postBody: evnt.body,
+              postTime: postDate,
+              title: evnt.title,
+              type: evnt.type,
+              userId: user,
+            });
+          },
+        },
+      ],
+    });
+    prompt.present();
   }
 }
