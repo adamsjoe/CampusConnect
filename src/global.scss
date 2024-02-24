@@ -74,7 +74,7 @@
 }
 
 ion-tab-bar {
-  --background: transparent;
+  --background: var(--primary-color);
 }
 
 ion-tab-button {
