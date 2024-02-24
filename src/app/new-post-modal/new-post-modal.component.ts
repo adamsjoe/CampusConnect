@@ -37,6 +37,8 @@ export class NewPostModalComponent {
     };
 
     console.log('post is ', post);
+
+    // automatially close the post
     this.newPostModal.dismiss(post);
   }
 
