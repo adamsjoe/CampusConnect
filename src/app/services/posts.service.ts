@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Firestore, collection, collectionData } from '@angular/fire/firestore';
+import { addDoc } from 'firebase/firestore';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -11,5 +12,11 @@ export class PostsService {
   getPosts(): Observable<any> {
     const aboutInfoCollection = collection(this.firestore, 'posts');
     return collectionData(aboutInfoCollection);
+  }
+
+  insertPost(post: any) {
+    console.log(post);
+    const postCollection = collection(this.firestore, 'posts');
+    return addDoc(postCollection, post);
   }
 }
