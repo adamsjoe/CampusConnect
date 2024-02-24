@@ -7,9 +7,11 @@
 
   <div id="container">
     <ion-card *ngFor="let post of allPosts">
-      <ion-card-header class="{{post.type}}">{{post.title}}</ion-card-header>
+      <ion-card-header class="{{post.postType}}"
+        >{{post.postTitle}}</ion-card-header
+      >
       <ion-card-content>
-        <p>{{post.postBody}}</p>
+        <p>{{post.postMessage}}</p>
       </ion-card-content>
       <ion-row class="cardfooter">
         <ion-col>
