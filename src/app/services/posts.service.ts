@@ -15,7 +15,7 @@ export class PostsService {
   }
 
   insertPost(post: any) {
-    console.log(post);
+    console.log('xx', post);
     const postCollection = collection(this.firestore, 'posts');
     return addDoc(postCollection, post);
   }
