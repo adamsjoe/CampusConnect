@@ -11,6 +11,7 @@ export class NewPostModalComponent {
   postTitle: string = '';
   postMessage: string = '';
   postType: string = '';
+  postParentPost: string = '';
 
   constructor(
     private newPostModal: ModalController,
@@ -34,6 +35,7 @@ export class NewPostModalComponent {
       postType: this.postType,
       postTime: new Date(),
       postAuthor: this.userService.getUser(),
+      postParentPost: '',
     };
 
     console.log('post is ', post);
