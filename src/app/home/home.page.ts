@@ -22,12 +22,20 @@ export class HomePage {
     console.log('you are : ', user); // remove me soon
 
     posts.getPosts().subscribe((data) => {
-      this.allPosts = data.map((post: { postTime: { toDate: () => any } }) => {
-        return {
-          ...post,
-          postTime: this.formatDate(post.postTime.toDate()),
-        };
-      });
+      this.allPosts = data.map(
+        (post: { postTime: { toDate: () => any }; postMessage: any }) => {
+          const truncatedMessage =
+            post.postMessage.length > 100
+              ? post.postMessage.substring(0, 100) + '...'
+              : post.postMessage;
+
+          return {
+            ...post,
+            postTime: this.formatDate(post.postTime.toDate()),
+            postMessage: truncatedMessage,
+          };
+        }
+      );
     });
   }
 
