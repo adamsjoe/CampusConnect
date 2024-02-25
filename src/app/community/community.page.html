@@ -10,4 +10,14 @@
       <ion-title size="large">Community</ion-title>
     </ion-toolbar>
   </ion-header>
+  <div id="container">
+    <ion-card *ngFor="let group of allGroups">
+      <ion-card-header>{{group.groupName}}</ion-card-header>
+      <ion-card-content>
+        <p>{{group.groupDesc}}</p>
+      </ion-card-content>
+      <ion-button fill="clear">Join Group</ion-button>
+      <ion-button fill="clear">Leave Group</ion-button>
+    </ion-card>
+  </div>
 </ion-content>
