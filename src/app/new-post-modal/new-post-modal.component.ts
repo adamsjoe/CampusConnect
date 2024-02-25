@@ -13,6 +13,7 @@ export class NewPostModalComponent {
   postMessage: string = '';
   postType: string = '';
   postParentPost: string = '';
+  postImages: any;
 
   constructor(
     private newPostModal: ModalController,
@@ -38,6 +39,7 @@ export class NewPostModalComponent {
       postTime: new Date(),
       postAuthor: this.userService.getUser(),
       postParentPost: '',
+      postImages: undefined,
     };
 
     console.log('post is ', post);
