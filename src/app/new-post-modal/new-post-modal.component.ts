@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { UserService } from '../services/currentUser.service';
+import { PhotoService } from '../services/photo.service';
 
 @Component({
   selector: 'app-new-post-modal',
@@ -15,7 +16,8 @@ export class NewPostModalComponent {
 
   constructor(
     private newPostModal: ModalController,
-    private userService: UserService
+    private userService: UserService,
+    public photoService: PhotoService
   ) {}
 
   dismissModal() {
@@ -52,5 +54,9 @@ export class NewPostModalComponent {
     return (
       !!this.postTitle.trim() && !!this.postMessage.trim() && !!this.postType
     );
+  }
+
+  addPhotoToGallery() {
+    this.photoService.addNewToGallery();
   }
 }
