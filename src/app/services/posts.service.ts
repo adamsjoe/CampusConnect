@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Firestore, collection, collectionData } from '@angular/fire/firestore';
-import { addDoc } from 'firebase/firestore';
+import { addDoc, orderBy, query } from 'firebase/firestore';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -9,11 +9,17 @@ import { Observable } from 'rxjs';
 export class PostsService {
   constructor(private firestore: Firestore) {}
 
+  // get all the posts and return them in descending time order
   getPosts(): Observable<any> {
-    const aboutInfoCollection = collection(this.firestore, 'posts');
-    return collectionData(aboutInfoCollection);
+    const postsCollection = collection(this.firestore, 'posts');
+    const orderedPostsQuery = query(
+      postsCollection,
+      orderBy('postTime', 'desc')
+    );
+    return collectionData(orderedPostsQuery);
   }
 
+  // insert a post
   insertPost(post: any) {
     console.log('xx', post);
     const postCollection = collection(this.firestore, 'posts');
