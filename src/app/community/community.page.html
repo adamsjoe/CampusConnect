@@ -1,19 +1,20 @@
 <ion-header [translucent]="true">
-  <ion-toolbar style="--background: transparent">
+  <ion-toolbar>
     <ion-title>Community</ion-title>
+    <ion-searchbar
+      [(ngModel)]="searchQuery"
+      (ionChange)="filterGroups()"
+    ></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="bground">
-  <ion-header collapse="condense">
+  <!-- <ion-header collapse="condense">
     <ion-toolbar style="--background: transparent">
       <ion-title size="large">Community</ion-title>
     </ion-toolbar>
-  </ion-header>
-  <ion-searchbar
-    [(ngModel)]="searchQuery"
-    (ionChange)="filterGroups()"
-  ></ion-searchbar>
+  </ion-header> -->
+
   <div id="container">
     <ion-card *ngFor="let group of filteredGroups">
       <ion-card-header>{{group.groupName}}</ion-card-header>
