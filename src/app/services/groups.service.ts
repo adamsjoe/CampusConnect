@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError, from, tap, throwError } from 'rxjs';
 import {
   Firestore,
   collection,
   collectionData,
+  deleteDoc,
+  doc,
+  getDocs,
   query,
+  setDoc,
   where,
 } from '@angular/fire/firestore';
 
@@ -28,5 +32,45 @@ export class GroupsService {
       where('userId', '==', userId)
     );
     return collectionData(userJoinedGroupsQuery);
+  }
+
+  // Method to join a group
+  joinGroup(user: any, groupId: string): Observable<any> {
+    const groupDocRef = doc(this.firestore, 'joinedGroups', groupId);
+    const data = {
+      userId: user,
+      groupId: groupId,
+    };
+    return from(setDoc(groupDocRef, data));
+  }
+
+  // Method to leave a group
+  async leaveGroup(user: any, groupId: string): Promise<any> {
+    console.log(
+      'Attempting to delete document with groupId:',
+      groupId,
+      'and userId:',
+      user.id
+    );
+
+    try {
+      // Construct a query to find the document matching both groupId and userId
+      const joinedGroupsQuery = query(
+        collection(this.firestore, 'joinedGroups'),
+        where('groupId', '==', groupId),
+        where('userId', '==', user)
+      );
+
+      // Execute the query to get the matching document
+      const querySnapshot = await getDocs(joinedGroupsQuery);
+
+      // If the query returns any documents, delete the first one found
+      querySnapshot.forEach(async (doc: any) => {
+        await deleteDoc(doc.ref);
+        console.log('Document deleted successfully');
+      });
+    } catch (error) {
+      console.error('Error deleting document:', error);
+    }
   }
 }

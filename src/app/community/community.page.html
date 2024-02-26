@@ -17,10 +17,16 @@
         <p>{{group.groupDesc}}</p>
         <p>{{group.id}}</p>
       </ion-card-content>
-      <ion-button *ngIf="isUserJoinedGroup(group.id)" fill="clear"
+      <ion-button
+        *ngIf="isUserJoinedGroup(group.id)"
+        fill="clear"
+        (click)="leaveGroup(group.id)"
         >Leave Group</ion-button
       >
-      <ion-button *ngIf="!isUserJoinedGroup(group.id)" fill="clear"
+      <ion-button
+        *ngIf="!isUserJoinedGroup(group.id)"
+        fill="clear"
+        (click)="joinGroup(group.id)"
         >Join Group</ion-button
       >
     </ion-card>
