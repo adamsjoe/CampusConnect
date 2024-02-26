@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.image-container {
+  margin-bottom: 20px; /* Adjust spacing as needed */
+  width: 30%;
+}
+
+.heading {
+  font-size: 24px;
+  margin-bottom: 20px; /* Adjust spacing as needed */
+}
+
+.form-container {
+  width: 80%;
+  max-width: 300px; /* Adjust maximum width as needed */
+}
+
+.transparent-input {
+  background-color: transparent;
+  border: 1px solid #ccc; /* Add border for better visibility */
+  border-radius: 5px; /* Add border radius for better appearance */
+}
+
+.login-button {
+  margin-top: 20px; /* Adjust spacing as needed */
+}

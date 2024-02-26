@@ -1,27 +1,29 @@
 <ion-content [fullscreen]="true" class="bground">
-  <div class="image-container">
-    <img src="assets/img/splash.png" />
+  <div class="container">
+    <div class="image-container">
+      <img src="assets/img/logo.png" />
+    </div>
+    <p class="heading">CampusConnect</p>
+    <ion-list class="form-container">
+      <ion-item lines="none">
+        <ion-label position="floating" class="input-label">Email</ion-label>
+        <ion-input
+          type="text"
+          [(ngModel)]="email"
+          class="transparent-input"
+        ></ion-input>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label position="floating" class="input-label">Password</ion-label>
+        <ion-input
+          type="password"
+          [(ngModel)]="password"
+          class="transparent-input"
+        ></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-button expand="block" (click)="login()" class="login-button"
+      >Login</ion-button
+    >
   </div>
-  <p class="heading">CampusConnect</p>
-  <ion-list class="form-container">
-    <ion-item lines="none">
-      <ion-label position="floating" class="input-label">Email</ion-label>
-      <ion-input
-        type="text"
-        [(ngModel)]="email"
-        class="transparent-input"
-      ></ion-input>
-    </ion-item>
-    <ion-item lines="none">
-      <ion-label position="floating" class="input-label">Password</ion-label>
-      <ion-input
-        type="password"
-        [(ngModel)]="password"
-        class="transparent-input"
-      ></ion-input>
-    </ion-item>
-  </ion-list>
-  <ion-button expand="block" (click)="login()" class="login-button"
-    >Login</ion-button
-  >
 </ion-content>
