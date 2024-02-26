@@ -67,7 +67,6 @@ export class CommunityPage implements OnInit {
       })
       .catch((error) => {
         console.error('Error leaving group:', error);
-        // Handle error as needed
       });
   }
 }
