@@ -11,6 +11,8 @@ export class CommunityPage implements OnInit {
   allGroups: any;
   userJoinedGroups: any[] = []; // Store the groups joined by the user
   user: any;
+  searchQuery: string = '';
+  filteredGroups: any;
 
   constructor(
     private groups: GroupsService,
@@ -21,6 +23,9 @@ export class CommunityPage implements OnInit {
     // Fetch all groups
     this.groups.getAllGroups().subscribe((data) => {
       this.allGroups = data;
+
+      // Initialize filteredGroups with all groups
+      this.filteredGroups = [...this.allGroups];
 
       // Fetch groups joined by the user
       const user = this.userService.getUser();
@@ -70,5 +75,22 @@ export class CommunityPage implements OnInit {
       .catch((error) => {
         console.error('Error leaving group:', error);
       });
+  }
+
+  filterGroups() {
+    if (!this.searchQuery) {
+      console.log('search empty');
+      this.filteredGroups = [...this.allGroups]; // Reset filteredGroups if searchQuery is empty
+      return;
+    }
+
+    const lowerCaseQuery = this.searchQuery.toLowerCase();
+    console.log('lower case query ', lowerCaseQuery);
+    this.filteredGroups = this.allGroups.filter((group: any) => {
+      return (
+        group.groupName.toLowerCase().includes(lowerCaseQuery) ||
+        group.groupDesc.toLowerCase().includes(lowerCaseQuery)
+      );
+    });
   }
 }

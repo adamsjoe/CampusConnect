@@ -10,8 +10,12 @@
       <ion-title size="large">Community</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-searchbar
+    [(ngModel)]="searchQuery"
+    (ionChange)="filterGroups()"
+  ></ion-searchbar>
   <div id="container">
-    <ion-card *ngFor="let group of allGroups">
+    <ion-card *ngFor="let group of filteredGroups">
       <ion-card-header>{{group.groupName}}</ion-card-header>
       <ion-card-content>
         <p>{{group.groupDesc}}</p>
