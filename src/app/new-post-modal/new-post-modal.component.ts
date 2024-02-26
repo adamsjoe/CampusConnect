@@ -39,7 +39,7 @@ export class NewPostModalComponent {
       postTime: new Date(),
       postAuthor: this.userService.getUser(),
       postParentPost: '',
-      postImages: undefined,
+      // postImages: undefined,
     };
 
     console.log('post is ', post);
