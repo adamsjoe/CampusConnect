@@ -45,9 +45,11 @@ export class CommunityPage implements OnInit {
   }
 
   joinGroup(groupId: string) {
+    console.log('join 1');
+    console.log('group id is: ', groupId);
     const user = this.userService.getUser();
     // Add the entry to joinedGroups table
-    this.groups.joinGroup(this.user, groupId).subscribe(() => {
+    this.groups.joinGroup(user, groupId).subscribe(() => {
       // Update the list of groups after joining
       this.fetchAllGroups();
     });

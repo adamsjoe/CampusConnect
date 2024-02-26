@@ -36,6 +36,9 @@ export class GroupsService {
 
   // Method to join a group
   joinGroup(user: any, groupId: string): Observable<any> {
+    console.log('join 2 1');
+    console.log('group id is: ', groupId);
+    console.log('user is: ', user);
     const groupDocRef = doc(this.firestore, 'joinedGroups', groupId);
     const data = {
       userId: user,
