@@ -1,5 +1,5 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar style="--background: transparent">
     <ion-title>Community</ion-title>
     <ion-searchbar
       [(ngModel)]="searchQuery"
@@ -9,11 +9,11 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="bground">
-  <!-- <ion-header collapse="condense">
+  <ion-header collapse="condense">
     <ion-toolbar style="--background: transparent">
       <ion-title size="large">Community</ion-title>
     </ion-toolbar>
-  </ion-header> -->
+  </ion-header>
 
   <div id="container">
     <ion-card *ngFor="let group of filteredGroups">
