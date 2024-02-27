@@ -22,11 +22,16 @@ export class HomePage {
     console.log('you are : ', user); // remove me soon
 
     posts.getPosts().subscribe((data) => {
-      this.allPosts = data.map(
+      // Filter only those posts which have no ParentPost
+      const filteredPosts = data.filter((post: any) => !post.postParentPost);
+
+      /// Map and format the filtered posts
+      // (we will truncate the post if the post is more than 100 characters )
+      this.allPosts = filteredPosts.map(
         (post: { postTime: { toDate: () => any }; postMessage: any }) => {
           const truncatedMessage =
             post.postMessage.length > 100
-              ? post.postMessage.substring(0, 100) + '...'
+              ? post.postMessage.substring(0, 100) + '...(more)'
               : post.postMessage;
 
           return {
