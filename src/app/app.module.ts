@@ -13,9 +13,15 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { EventModalComponent } from './event-modal/event-modal.component';
 import { NewPostModalComponent } from './new-post-modal/new-post-modal.component';
 import { FormsModule } from '@angular/forms';
+import { ModalConversationComponent } from './modal-conversation/modal-conversation.component';
 
 @NgModule({
-  declarations: [AppComponent, EventModalComponent, NewPostModalComponent],
+  declarations: [
+    AppComponent,
+    EventModalComponent,
+    NewPostModalComponent,
+    ModalConversationComponent,
+  ],
   imports: [
     BrowserModule,
     IonicModule,

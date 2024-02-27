@@ -1,0 +1,30 @@
+<ion-content>
+  <ion-card>
+    <ion-card-header class="{{ post.postType }}">
+      {{ post.postTitle }}
+    </ion-card-header>
+    <ion-card-content>
+      {{ post.postMessage }}
+    </ion-card-content>
+    <ion-row class="cardfooter">
+      <ion-col>
+        <p>Posted by {{ userFullName }} on {{ post.postTime }}</p>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+  <ion-card *ngFor="let relatedPost of relatedPosts">
+    <ion-card-header class="{{ relatedPost.postType }}">
+      {{ relatedPost.postTitle }}
+    </ion-card-header>
+    <ion-card-content>
+      {{ relatedPost.postMessage }}
+    </ion-card-content>
+    <ion-row class="cardfooter">
+      <ion-col>
+        <p>Posted by {{ userFullName }} on {{ relatedPost.postTime }}</p>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+  <ion-button (click)="closeModal()">Close</ion-button>
+</ion-content>

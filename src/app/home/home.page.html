@@ -6,10 +6,13 @@
   </ion-header>
 
   <div id="container">
-    <ion-card *ngFor="let post of allPosts">
+    <ion-card
+      *ngFor="let post of allPosts"
+      (click)="openConversationModal(post)"
+    >
       <ion-card-header class="{{post.postType}}"
-        >{{post.postTitle}}</ion-card-header
-      >
+        >{{post.postTitle}}-{{post.id}}
+      </ion-card-header>
       <ion-card-content>
         <p>{{post.postMessage}}</p>
       </ion-card-content>

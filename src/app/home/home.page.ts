@@ -3,6 +3,7 @@ import { PostsService } from '../services/posts.service';
 import { UserService } from '../services/currentUser.service';
 import { ModalController } from '@ionic/angular';
 import { NewPostModalComponent } from '../new-post-modal/new-post-modal.component';
+import { ModalConversationComponent } from '../modal-conversation/modal-conversation.component';
 
 @Component({
   selector: 'app-home',
@@ -62,6 +63,7 @@ export class HomePage {
     return `${formattedDay}/${formattedMonth}/${year} ${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
   }
 
+  // insert a new post to firestore - hope no go boom
   async insertPost() {
     const user = this.userService.getUser();
     const postDate = new Date();
@@ -77,5 +79,18 @@ export class HomePage {
       console.log('data is ', data);
       this.posts.insertPost(data);
     }
+  }
+
+  openConversationModal(post: any) {
+    console.log('opening the modal with post id ', post);
+    // Open the modal and pass the post data to it
+    this.modalController
+      .create({
+        component: ModalConversationComponent,
+        componentProps: {
+          post: post,
+        },
+      })
+      .then((modal) => modal.present());
   }
 }
