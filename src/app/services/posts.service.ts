@@ -10,13 +10,14 @@ export class PostsService {
   constructor(private firestore: Firestore) {}
 
   // get all the posts and return them in descending time order
+  // make sure to key on the id field
   getPosts(): Observable<any> {
     const postsCollection = collection(this.firestore, 'posts');
     const orderedPostsQuery = query(
       postsCollection,
       orderBy('postTime', 'desc')
     );
-    return collectionData(orderedPostsQuery);
+    return collectionData(orderedPostsQuery, { idField: 'id' });
   }
 
   // insert a post
