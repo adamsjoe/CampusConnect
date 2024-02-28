@@ -1,4 +1,5 @@
 <ion-content>
+  <!-- Main post -->
   <ion-card>
     <ion-card-header class="{{ post.postType }}">
       {{ post.postTitle }}
@@ -14,28 +15,39 @@
       </ion-col>
     </ion-row>
   </ion-card>
-  <ion-card
-    *ngFor="let relatedPost of relatedPosts"
-    [ngClass]="{
-      author: relatedPost.postAuthor === post.postAuthor,
-      other: relatedPost.postAuthor !== post.postAuthor
-    }"
-  >
-    <!-- <ion-card-header class="{{ relatedPost.postType }}">
-      {{ relatedPost.postTitle }}
-    </ion-card-header> -->
-    <ion-card-content>
-      {{ relatedPost.postMessage }}
-    </ion-card-content>
-    <ion-row class="cardfooter">
-      <ion-col>
-        <p>
-          Posted by {{ userFullNames[relatedPost.postAuthor] }} on
-          {{ relatedPost.postTime }}
-        </p>
-      </ion-col>
-    </ion-row>
-  </ion-card>
 
-  <ion-button (click)="closeModal()">Close</ion-button>
+  <!-- Related posts -->
+  <div id="related-posts-container">
+    <ion-card
+      *ngFor="let relatedPost of relatedPosts"
+      [ngClass]="{
+        author: relatedPost.postAuthor === post.postAuthor,
+        other: relatedPost.postAuthor !== post.postAuthor
+      }"
+    >
+      <ion-card-content>
+        {{ relatedPost.postMessage }}
+      </ion-card-content>
+      <ion-row class="cardfooter">
+        <ion-col>
+          <p>
+            Posted by {{ userFullNames[relatedPost.postAuthor] }} on
+            {{ relatedPost.postTime }}
+          </p>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </div>
+
+  <!-- Text area for input -->
+  <div id="comment-section">
+    <ion-textarea
+      placeholder="Type your comment here..."
+      rows="3"
+    ></ion-textarea>
+    <ion-button expand="block" color="primary">Submit</ion-button>
+    <ion-button expand="block" color="danger" (click)="closeModal()"
+      >Close</ion-button
+    >
+  </div>
 </ion-content>
