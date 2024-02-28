@@ -8,20 +8,31 @@
     </ion-card-content>
     <ion-row class="cardfooter">
       <ion-col>
-        <p>Posted by {{ userFullName }} on {{ post.postTime }}</p>
+        <p>
+          Posted by {{ userFullNames[post.postAuthor] }} on {{ post.postTime }}
+        </p>
       </ion-col>
     </ion-row>
   </ion-card>
-  <ion-card *ngFor="let relatedPost of relatedPosts">
-    <ion-card-header class="{{ relatedPost.postType }}">
+  <ion-card
+    *ngFor="let relatedPost of relatedPosts"
+    [ngClass]="{
+      author: relatedPost.postAuthor === post.postAuthor,
+      other: relatedPost.postAuthor !== post.postAuthor
+    }"
+  >
+    <!-- <ion-card-header class="{{ relatedPost.postType }}">
       {{ relatedPost.postTitle }}
-    </ion-card-header>
+    </ion-card-header> -->
     <ion-card-content>
       {{ relatedPost.postMessage }}
     </ion-card-content>
     <ion-row class="cardfooter">
       <ion-col>
-        <p>Posted by {{ userFullName }} on {{ relatedPost.postTime }}</p>
+        <p>
+          Posted by {{ userFullNames[relatedPost.postAuthor] }} on
+          {{ relatedPost.postTime }}
+        </p>
       </ion-col>
     </ion-row>
   </ion-card>

@@ -9,6 +9,7 @@ export class UsersService {
   constructor(private firestore: Firestore) {}
 
   getUserInfo(uuid: string): Observable<any> {
+    console.log('looking for uuid :', uuid);
     const documentReference = doc(this.firestore, 'usersCollection', uuid);
     return new Observable<any>((observer) => {
       getDoc(documentReference)
