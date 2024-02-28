@@ -34,3 +34,7 @@ Make sure to select device from console (or an emulator will be used)
 # To generate asset files
 
 npx capacitor-assets generate
+
+# Miro board
+
+https://miro.com/welcomeonboard/YUlpQXMzZkNrZVQzcHRxWEhNaWtpeFdMTUhjS2tycHhLTEVtMlBWS3U5T21kV0x5M2xIS0FZUHdzTDZmZHI5Z3wzNDU4NzY0NTIxNDE0MzkxMTExfDI=?share_link_id=450160984217
