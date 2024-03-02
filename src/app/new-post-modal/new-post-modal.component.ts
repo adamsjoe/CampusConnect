@@ -21,17 +21,17 @@ export class NewPostModalComponent {
     public photoService: PhotoService
   ) {}
 
+  /**
+   * Close the modal
+   */
   dismissModal() {
-    /**
-     * Close the modal
-     */
     this.newPostModal.dismiss();
   }
 
+  /**
+   * Create a new object to hold the data we have entered for this post.
+   */
   displayNewPostModal() {
-    /**
-     * Create a new object to hold the data we have entered for this post.
-     */
     const post = {
       postTitle: this.postTitle,
       postMessage: this.postMessage,
@@ -48,11 +48,11 @@ export class NewPostModalComponent {
     this.newPostModal.dismiss(post);
   }
 
+  /**
+   * The submit button is disabled unless the user enters at least the following fields
+   * Added the trim method as I am the sorta sick person who would enter whitespace to break this.
+   */
   isFormValid(): boolean {
-    /**
-     * The submit button is disabled unless the user enters at least the following fields
-     * Added the trim method as I am the sorta sick person who would enter whitespace to break this.
-     */
     return (
       !!this.postTitle.trim() && !!this.postMessage.trim() && !!this.postType
     );

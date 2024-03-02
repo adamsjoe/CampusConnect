@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { UsersService } from '../services/users.service';
 import { PostsService } from '../services/posts.service';
+import { UserService } from '../services/currentUser.service';
 
 @Component({
   selector: 'app-modal-conversation',
@@ -12,12 +13,15 @@ export class ModalConversationComponent implements OnInit {
   @Input() post: any; // Main post
   @Input() relatedPosts: any[] = []; // Related posts
   userFullNames: { [userId: string]: string } = {};
+  user: any;
   allPosts: any;
+  commentText: string = '';
 
   constructor(
     private modalController: ModalController,
     private userService: UsersService,
-    private postsService: PostsService
+    private postsService: PostsService,
+    private currentUser: UserService
   ) {}
 
   ngOnInit() {
@@ -44,6 +48,7 @@ export class ModalConversationComponent implements OnInit {
       (posts) => {
         this.relatedPosts = this.formatRelatedPosts(posts);
         console.log('Related posts:', this.relatedPosts);
+
         // Once related posts are loaded, call getUserInfo for each related post author
         for (const relatedPost of this.relatedPosts) {
           this.getUserInfo(relatedPost.postAuthor);
@@ -55,6 +60,14 @@ export class ModalConversationComponent implements OnInit {
     );
   }
 
+  /**
+   * We need to do a bit of processing, the post object has an id and a timestamp.
+   * So we will format the timestamp to something readable and we shall get the
+   * user from the users collection based off the id
+   *
+   * @param posts
+   * @returns
+   */
   formatRelatedPosts(posts: any[]): any[] {
     return posts.map((post) => ({
       ...post,
@@ -83,5 +96,26 @@ export class ModalConversationComponent implements OnInit {
 
   closeModal() {
     this.modalController.dismiss();
+  }
+
+  insertPost() {
+    const user = this.currentUser.getUser();
+    const post = {
+      postAuthor: user,
+      postMessage: this.commentText,
+      postParentPost: this.post.id,
+      postTime: new Date(),
+      postType: this.post.postType,
+    };
+
+    this.postsService
+      .insertPost(post)
+      .then(() => {
+        console.log('whopee');
+        this.commentText = '';
+      })
+      .catch((error) => {
+        console.error('Error adding post: ', error);
+      });
   }
 }

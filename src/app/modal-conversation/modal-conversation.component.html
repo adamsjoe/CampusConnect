@@ -40,12 +40,20 @@
   </div>
 
   <!-- Text area for input -->
+
   <div id="comment-section">
     <ion-textarea
-      placeholder="Type your comment here..."
+      placeholder="Type your reply here..."
       rows="3"
+      [(ngModel)]="commentText"
     ></ion-textarea>
-    <ion-button expand="block" color="primary">Submit</ion-button>
+    <ion-button
+      expand="block"
+      color="primary"
+      (click)="insertPost()"
+      [disabled]="!commentText.trim()"
+      >Reply</ion-button
+    >
     <ion-button expand="block" color="danger" (click)="closeModal()"
       >Close</ion-button
     >

@@ -14,7 +14,7 @@
     <ion-card-header> Add New Post </ion-card-header>
     <ion-card-content>
       <ion-item>
-        <ion-label position="floating">Title</ion-label>
+        <ion-label position="floating">Title *</ion-label>
         <ion-input
           name="postTitle"
           type="text"
@@ -22,14 +22,14 @@
         ></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">Message</ion-label>
+        <ion-label position="floating">Message *</ion-label>
         <ion-textarea
           name="postMessage"
           [(ngModel)]="postMessage"
         ></ion-textarea>
       </ion-item>
       <ion-item>
-        <ion-label>Type</ion-label>
+        <ion-label>Type *</ion-label>
         <ion-select name="postType" [(ngModel)]="postType">
           <ion-select-option value="general">General</ion-select-option>
           <ion-select-option value="departmental"
