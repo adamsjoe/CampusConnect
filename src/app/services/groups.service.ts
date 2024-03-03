@@ -62,6 +62,24 @@ export class GroupsService {
 
     return forkJoin(groupObservables);
   }
+
+  getGroupCol(postTypeIds: string[]): Observable<any[]> {
+    const groupObservables = postTypeIds.map((postTypeId) =>
+      from(getDoc(doc(this.firestore, 'groups', postTypeId))).pipe(
+        map((snapshot) => {
+          const data = snapshot.data();
+          console.log('Data for postTypeId', postTypeId, ':', data); // Check the data retrieved
+          return {
+            id: snapshot.id,
+            groupCol: data?.['groupColour'],
+          };
+        })
+      )
+    );
+
+    return forkJoin(groupObservables);
+  }
+
   // Method to join a group
   joinGroup(user: any, groupId: string): Observable<any> {
     console.log('join 2 1');

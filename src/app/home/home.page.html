@@ -10,8 +10,8 @@
       *ngFor="let post of allPosts"
       (click)="openConversationModal(post)"
     >
-      <ion-card-header class="{{post.postType}}"
-        >{{post.postTitle}}-{{post.id}}
+      <ion-card-header [style.background-color]="post.groupColour"
+        >{{post.postTitle}} - {{post.postType}} - {{post.groupColour}} ----
       </ion-card-header>
       <ion-card-content>
         <p>{{post.postMessage}}</p>

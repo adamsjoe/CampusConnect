@@ -31,10 +31,6 @@
       <ion-item>
         <ion-label>Type *</ion-label>
         <ion-select name="postType" [(ngModel)]="postType">
-          <ion-select-option value="general">General</ion-select-option>
-          <ion-select-option value="departmental"
-            >Departmental</ion-select-option
-          >
           <ion-select-option
             *ngFor="let group of joinedGroups"
             [value]="group.id"

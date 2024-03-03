@@ -14,7 +14,7 @@ import { EventModalComponent } from './event-modal/event-modal.component';
 import { NewPostModalComponent } from './new-post-modal/new-post-modal.component';
 import { FormsModule } from '@angular/forms';
 import { ModalConversationComponent } from './modal-conversation/modal-conversation.component';
-
+import { GroupsService } from './services/groups.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +32,10 @@ import { ModalConversationComponent } from './modal-conversation/modal-conversat
     provideFirestore(() => getFirestore()),
   ],
 
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    GroupsService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

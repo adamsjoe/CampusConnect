@@ -4,6 +4,7 @@ import { UserService } from '../services/currentUser.service';
 import { ModalController } from '@ionic/angular';
 import { NewPostModalComponent } from '../new-post-modal/new-post-modal.component';
 import { ModalConversationComponent } from '../modal-conversation/modal-conversation.component';
+import { GroupsService } from '../services/groups.service';
 
 @Component({
   selector: 'app-home',
@@ -17,12 +18,15 @@ export class HomePage {
   constructor(
     private posts: PostsService,
     private userService: UserService,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private groupsService: GroupsService
   ) {
-    const user = this.userService.getUser();
-    console.log('you are : ', user); // remove me soon
+    this.fetchPosts();
+  }
 
-    posts.getPosts().subscribe((data) => {
+  async fetchPosts() {
+    const user = this.userService.getUser();
+    this.posts.getPosts().subscribe((data) => {
       // Filter only those posts which have no ParentPost
       const filteredPosts = data.filter((post: any) => !post.postParentPost);
 
@@ -42,6 +46,21 @@ export class HomePage {
           };
         }
       );
+
+      // Now fetch groupCol values for each post
+      this.fetchGroupColForPosts();
+      console.log('post is ', this.allPosts);
+    });
+  }
+
+  // get the colour from group.groupCol
+  async fetchGroupColForPosts() {
+    const postTypeIds = this.allPosts.map((post: any) => post.postType);
+    this.groupsService.getGroupCol(postTypeIds).subscribe((groupCols) => {
+      // Merge groupCol values with posts
+      this.allPosts.forEach((post: any, index: number) => {
+        post.groupColour = groupCols[index]?.groupCol || ''; // Assign groupCol to each post
+      });
     });
   }
 
