@@ -1,11 +1,21 @@
 import { Injectable } from '@angular/core';
-import { Observable, catchError, from, tap, throwError } from 'rxjs';
+import {
+  Observable,
+  catchError,
+  combineLatest,
+  forkJoin,
+  from,
+  map,
+  tap,
+  throwError,
+} from 'rxjs';
 import {
   Firestore,
   collection,
   collectionData,
   deleteDoc,
   doc,
+  getDoc,
   getDocs,
   query,
   setDoc,
@@ -18,14 +28,20 @@ import {
 export class GroupsService {
   constructor(private firestore: Firestore) {}
 
-  // return all the groups, key this in the document id
+  /**
+   * return all the groups, key this in the document id
+   * @returns
+   */
   getAllGroups(): Observable<any> {
     const allGroupsCollection = collection(this.firestore, 'groups');
     return collectionData(allGroupsCollection, { idField: 'id' });
   }
 
-  // query the joinedGroups collection, filtering on the
-  // userId
+  /**
+   * query the joinedGroups collection, filtering on the userId
+   * @param userId
+   * @returns
+   */
   getUserJoinedGroups(userId: string): Observable<any[]> {
     const userJoinedGroupsQuery = query(
       collection(this.firestore, 'joinedGroups'),
@@ -34,6 +50,18 @@ export class GroupsService {
     return collectionData(userJoinedGroupsQuery);
   }
 
+  getJoinedGroupNames(groupIds: string[]): Observable<any[]> {
+    const groupObservables = groupIds.map((groupId) =>
+      from(getDoc(doc(this.firestore, 'groups', groupId))).pipe(
+        map((snapshot) => ({
+          id: snapshot.id,
+          name: snapshot.data()?.['groupName'],
+        }))
+      )
+    );
+
+    return forkJoin(groupObservables);
+  }
   // Method to join a group
   joinGroup(user: any, groupId: string): Observable<any> {
     console.log('join 2 1');

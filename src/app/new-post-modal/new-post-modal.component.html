@@ -35,6 +35,13 @@
           <ion-select-option value="departmental"
             >Departmental</ion-select-option
           >
+          <ion-select-option
+            *ngFor="let group of joinedGroups"
+            [value]="group.id"
+          >
+            {{ group.name }}
+          </ion-select-option>
+          >
         </ion-select>
       </ion-item>
       <!-- <ion-button (click)="addPhotoToGallery()">Photo</ion-button> -->
