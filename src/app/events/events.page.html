@@ -15,7 +15,7 @@
     <ion-datetime
       [showDefaultTitle]="true"
       presentation="date"
-      value="2024-01-01"
+      [value]="currentDate"
       [highlightedDates]="highlightedDates"
       class="transparent-datetime"
       (ionChange)="dateSelected($event)"

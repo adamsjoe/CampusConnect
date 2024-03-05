@@ -1,45 +1,43 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { EventModalComponent } from '../event-modal/event-modal.component';
+import { EventsService } from '../services/events.service';
 
 @Component({
   selector: 'app-events',
   templateUrl: './events.page.html',
   styleUrls: ['./events.page.scss'],
 })
-export class EventsPage {
-  highlightedDates = [
-    {
-      date: '2024-01-05',
-      textColor: '#800080',
-      backgroundColor: '#ffc0cb',
-      desc: 'Something happened on this day',
-      type: 'general annoucement',
-    },
-    {
-      date: '2024-01-10',
-      textColor: '#09721b',
-      backgroundColor: '#c8e5d0',
-      desc: 'Something else happened on this day',
-      type: 'department annoucement',
-    },
-    {
-      date: '2024-01-20',
-      textColor: 'var(--ion-color-secondary-contrast)',
-      backgroundColor: 'var(--ion-color-secondary)',
-      desc: 'Something amazing happened on this day',
-      type: 'war annoucement',
-    },
-    {
-      date: '2024-01-23',
-      textColor: 'rgb(68, 10, 184)',
-      backgroundColor: 'rgb(211, 200, 229)',
-      desc: 'Something should have happened on this day',
-      type: 'mystery annoucement',
-    },
-  ];
+export class EventsPage implements OnInit {
+  dates: any[] = [];
+  highlightedDates: any[] = [];
+  currentDate: string = '';
 
-  constructor(private modalController: ModalController) {}
+  constructor(
+    private modalController: ModalController,
+    private eventsService: EventsService
+  ) {
+    this.getAllEvents();
+  }
+
+  ngOnInit(): void {
+    // get the current date - will use this in the datetime component
+    const today = new Date();
+
+    this.currentDate = this.eventsService.formatDate(new Date());
+
+    this.eventsService.getAllEvents().subscribe((data) => {
+      this.dates = data;
+      console.log('dates ', this.dates);
+      this.highlightedDates = this.dates;
+    });
+  }
+
+  async getAllEvents() {
+    console.log('hi');
+    // const stuff = this.eventsService.getAllEvents();
+    // console.log('xx ', stuff, 'xx');
+  }
 
   async dateSelected(event: CustomEvent) {
     const selectedDate = event.detail.value;

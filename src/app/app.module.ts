@@ -15,6 +15,7 @@ import { NewPostModalComponent } from './new-post-modal/new-post-modal.component
 import { FormsModule } from '@angular/forms';
 import { ModalConversationComponent } from './modal-conversation/modal-conversation.component';
 import { GroupsService } from './services/groups.service';
+import { EventsService } from './services/events.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +36,7 @@ import { GroupsService } from './services/groups.service';
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     GroupsService,
+    EventsService,
   ],
   bootstrap: [AppComponent],
 })
