@@ -12,6 +12,9 @@ export class EventModalComponent {
   @Input() backgroundColor: string = '';
   @Input() desc: string = '';
   @Input() type: string = '';
+  @Input() title: string = '';
+  @Input() location: string = '';
+  @Input() time: string = '';
 
   constructor(private modalController: ModalController) {}
 

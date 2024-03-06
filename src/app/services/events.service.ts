@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 // import { AngularFirestore } from '@angular/fire/compat/firestore';
 import {
+  DocumentData,
+  DocumentReference,
   Firestore,
   collection,
   collectionData,
@@ -11,13 +13,18 @@ import {
   query,
   setDoc,
   where,
+  DocumentSnapshot,
 } from '@angular/fire/firestore';
-import { Observable, map } from 'rxjs';
+import { Observable, forkJoin, map, switchMap } from 'rxjs';
+import { GroupsService } from './groups.service';
 @Injectable({
   providedIn: 'root',
 })
 export class EventsService {
-  constructor(private firestore: Firestore) {}
+  constructor(
+    private firestore: Firestore,
+    private groupsService: GroupsService
+  ) {}
 
   // this works to get all
   getAllEvents(): Observable<any> {
@@ -26,10 +33,13 @@ export class EventsService {
       map((events) =>
         events.map((event) => ({
           date: this.formatDate(event['eventDate'].toDate()),
-          textColor: '#000000',
-          backgroundColor: '#09721b',
-          desc: event['eventTitle'],
-          type: 'general announcement',
+          textColor: '#FFFFFF',
+          backgroundColor: event['backgroundColor'],
+          title: event['eventTitle'],
+          desc: event['eventDesc'],
+          location: event['eventLocation'],
+          time: event['eventTime'],
+          type: event['eventType'],
         }))
       )
     );

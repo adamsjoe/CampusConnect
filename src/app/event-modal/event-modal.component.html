@@ -1,23 +1,26 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
-    <ion-title> {{ desc }} </ion-title>
-    <ion-buttons slot="end">
+    <ion-title> {{ desc }} LA LA LA</ion-title>
+     <ion-buttons slot="end">
       <ion-button (click)="dismiss()" class="modalBeGone">Close</ion-button>
-    </ion-buttons>
+    </ion-buttons> 
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content>
   <ion-card>
-    <ion-card-header>
-      {{ reverseDate(date) }}
-    </ion-card-header>
-    <ion-card-content
-      [style.color]="textColor"
+    <ion-card-header
       [style.background-color]="backgroundColor"
+      [style.colour]="textColor"
     >
-      This is a: {{ type }} <br />
-      Message Reads: {{ desc }}
+      {{ title }}
+    </ion-card-header>
+    <ion-card-content [style.colour]="textColor">
+      Date: {{ reverseDate(date) }} <br />
+      Location: {{ location }} <br />
+      Time: {{ time }} <br />
+      Information: {{ desc }} <br />
     </ion-card-content>
+    <ion-button (click)="dismiss()" class="modalBeGone">Close</ion-button>
   </ion-card>
 </ion-content>

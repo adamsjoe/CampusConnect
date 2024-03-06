@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { EventModalComponent } from '../event-modal/event-modal.component';
 import { EventsService } from '../services/events.service';
+import { GroupsService } from '../services/groups.service';
 
 @Component({
   selector: 'app-events',
@@ -15,7 +16,8 @@ export class EventsPage implements OnInit {
 
   constructor(
     private modalController: ModalController,
-    private eventsService: EventsService
+    private eventsService: EventsService,
+    private groupsService: GroupsService
   ) {
     this.getAllEvents();
   }
@@ -56,6 +58,7 @@ export class EventsPage implements OnInit {
           backgroundColor: matchingDate.backgroundColor,
           desc: matchingDate.desc,
           type: matchingDate.type,
+          title: matchingDate.title,
         },
       });
       await modal.present();
