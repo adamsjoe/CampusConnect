@@ -9,14 +9,12 @@ import { UserService } from '../services/currentUser.service';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class LoginPage {
   email: string = '';
   password: string = '';
   UserService: any;
 
   constructor(private router: Router, private userService: UserService) {}
-
-  ngOnInit() {}
 
   login() {
     const app = initializeApp(environment.firebase);
@@ -37,5 +35,9 @@ export class LoginPage implements OnInit {
         console.log('error code : ', errorCode);
         console.log('error message : ', errorMessage);
       });
+  }
+
+  notDone() {
+    alert('Feature not implemented');
   }
 }
