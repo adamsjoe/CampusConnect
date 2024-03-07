@@ -4,13 +4,14 @@
     <ion-searchbar
       [(ngModel)]="searchQuery"
       (ionChange)="filterGroups()"
+      style="color: white"
     ></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="bground">
   <ion-header collapse="condense">
-    <ion-toolbar style="--background: transparent">
+    <ion-toolbar>
       <ion-title size="large">Community</ion-title>
     </ion-toolbar>
   </ion-header>
@@ -20,7 +21,6 @@
       <ion-card-header>{{group.groupName}}</ion-card-header>
       <ion-card-content>
         <p>{{group.groupDesc}}</p>
-        <p>{{group.id}}</p>
       </ion-card-content>
       <ion-button
         *ngIf="isUserJoinedGroup(group.id)"
