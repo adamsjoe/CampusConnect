@@ -3,7 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { EventModalComponent } from '../event-modal/event-modal.component';
 import { EventsService } from '../services/events.service';
 import { GroupsService } from '../services/groups.service';
-
+import { AddEventModalComponent } from '../add-event-modal/add-event-modal.component';
 @Component({
   selector: 'app-events',
   templateUrl: './events.page.html',
@@ -63,5 +63,12 @@ export class EventsPage implements OnInit {
       });
       await modal.present();
     }
+  }
+
+  async insertEvent() {
+    const modal = await this.modalController.create({
+      component: AddEventModalComponent,
+    });
+    await modal.present();
   }
 }
