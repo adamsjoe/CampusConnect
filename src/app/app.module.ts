@@ -16,12 +16,14 @@ import { FormsModule } from '@angular/forms';
 import { ModalConversationComponent } from './modal-conversation/modal-conversation.component';
 import { GroupsService } from './services/groups.service';
 import { EventsService } from './services/events.service';
+import { AddEventModalComponent } from './add-event-modal/add-event-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
     EventModalComponent,
     NewPostModalComponent,
     ModalConversationComponent,
+    AddEventModalComponent,
   ],
   imports: [
     BrowserModule,
