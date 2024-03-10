@@ -1,0 +1,25 @@
+<ion-header>
+  <!-- <ion-toolbar> -->
+  <ion-title>Add New Event</ion-title>
+  <!-- <ion-buttons slot="end">
+    <ion-button (click)="dismissModal()" class="modalBeGone">Close</ion-button>
+  </ion-buttons> -->
+  <!-- </ion-toolbar> -->
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-item>
+      <ion-label position="floating">Title *</ion-label>
+      <ion-input
+        name="eventTitle"
+        type="text"
+        [(ngModel)]="eventTitle"
+      ></ion-input>
+    </ion-item>
+    <ion-datetime-button datetime="datetime"></ion-datetime-button>
+    <ion-modal [keepContentsMounted]="true">
+      <ng-template> <ion-datetime id="datetime"></ion-datetime> </ng-template>
+    </ion-modal>
+  </ion-card>
+</ion-content>
