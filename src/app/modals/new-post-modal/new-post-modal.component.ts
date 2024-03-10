@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { UserService } from '../services/currentUser.service';
-import { PhotoService } from '../services/photo.service';
-import { GroupsService } from '../services/groups.service';
+import { UserService } from '../../services/currentUser.service';
+import { PhotoService } from '../../services/photo.service';
+import { GroupsService } from '../../services/groups.service';
 
 @Component({
   selector: 'app-new-post-modal',

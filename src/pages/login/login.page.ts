@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { environment } from 'src/environments/environment';
-import { UserService } from '../services/currentUser.service';
+import { UserService } from '../../app/services/currentUser.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',

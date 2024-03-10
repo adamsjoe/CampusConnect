@@ -10,29 +10,35 @@ const routes: Routes = [
       {
         path: 'home',
         loadChildren: () =>
-          import('../home/home.module').then((m) => m.HomePageModule),
+          import('../../pages/home/home.module').then((m) => m.HomePageModule),
       },
       {
         path: 'community',
         loadChildren: () =>
-          import('../community/community.module').then(
+          import('../../pages/community/community.module').then(
             (m) => m.CommunityPageModule
           ),
       },
       {
         path: 'events',
         loadChildren: () =>
-          import('../events/events.module').then((m) => m.EventsPageModule),
+          import('../../pages/events/events.module').then(
+            (m) => m.EventsPageModule
+          ),
       },
       {
         path: 'profile',
         loadChildren: () =>
-          import('../profile/profile.module').then((m) => m.ProfilePageModule),
+          import('../../pages/profile/profile.module').then(
+            (m) => m.ProfilePageModule
+          ),
       },
       {
         path: 'tools',
         loadChildren: () =>
-          import('../tools/tools.module').then((m) => m.ToolsPageModule),
+          import('../../pages/tools/tools.module').then(
+            (m) => m.ToolsPageModule
+          ),
       },
     ],
   },

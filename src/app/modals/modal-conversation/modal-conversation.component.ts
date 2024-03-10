@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { UsersService } from '../services/users.service';
-import { PostsService } from '../services/posts.service';
-import { UserService } from '../services/currentUser.service';
+import { UsersService } from '../../services/users.service';
+import { PostsService } from '../../services/posts.service';
+import { UserService } from '../../services/currentUser.service';
 
 @Component({
   selector: 'app-modal-conversation',

@@ -11,7 +11,7 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () =>
-      import('./login/login.module').then((m) => m.LoginPageModule),
+      import('../pages/login/login.module').then((m) => m.LoginPageModule),
   },
   {
     path: 'tabs',
@@ -21,27 +21,31 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () =>
-      import('./login/login.module').then((m) => m.LoginPageModule),
+      import('../pages/login/login.module').then((m) => m.LoginPageModule),
   },
   {
     path: 'profile',
     loadChildren: () =>
-      import('./profile/profile.module').then((m) => m.ProfilePageModule),
+      import('../pages/profile/profile.module').then(
+        (m) => m.ProfilePageModule
+      ),
   },
   {
     path: 'community',
     loadChildren: () =>
-      import('./community/community.module').then((m) => m.CommunityPageModule),
+      import('../pages/community/community.module').then(
+        (m) => m.CommunityPageModule
+      ),
   },
   {
     path: 'tools',
     loadChildren: () =>
-      import('./tools/tools.module').then((m) => m.ToolsPageModule),
+      import('../pages/tools/tools.module').then((m) => m.ToolsPageModule),
   },
   {
     path: 'login',
     loadChildren: () =>
-      import('./login/login.module').then((m) => m.LoginPageModule),
+      import('../pages/login/login.module').then((m) => m.LoginPageModule),
   },
 ];
 

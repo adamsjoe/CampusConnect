@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { GroupsService } from '../services/groups.service';
-import { UserService } from '../services/currentUser.service';
+import { GroupsService } from '../../app/services/groups.service';
+import { UserService } from '../../app/services/currentUser.service';
 
 @Component({
   selector: 'app-community',

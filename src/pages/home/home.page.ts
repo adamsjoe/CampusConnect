@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { PostsService } from '../services/posts.service';
-import { UserService } from '../services/currentUser.service';
+import { PostsService } from '../../app/services/posts.service';
+import { UserService } from '../../app/services/currentUser.service';
 import { ModalController } from '@ionic/angular';
-import { NewPostModalComponent } from '../new-post-modal/new-post-modal.component';
-import { ModalConversationComponent } from '../modal-conversation/modal-conversation.component';
-import { GroupsService } from '../services/groups.service';
+import { NewPostModalComponent } from '../../app/modals/new-post-modal/new-post-modal.component';
+import { ModalConversationComponent } from '../../app/modals/modal-conversation/modal-conversation.component';
+import { GroupsService } from '../../app/services/groups.service';
 
 @Component({
   selector: 'app-home',

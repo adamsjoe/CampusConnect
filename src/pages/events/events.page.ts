@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { EventModalComponent } from '../event-modal/event-modal.component';
-import { EventsService } from '../services/events.service';
-import { GroupsService } from '../services/groups.service';
-import { AddEventModalComponent } from '../add-event-modal/add-event-modal.component';
+import { EventModalComponent } from '../../app/modals/event-modal/event-modal.component';
+import { EventsService } from '../../app/services/events.service';
+import { GroupsService } from '../../app/services/groups.service';
+import { AddEventModalComponent } from '../../app/modals/add-event-modal/add-event-modal.component';
 @Component({
   selector: 'app-events',
   templateUrl: './events.page.html',
