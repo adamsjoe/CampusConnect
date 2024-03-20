@@ -6,6 +6,8 @@ import {
   Firestore,
   collection,
   collectionData,
+  addDoc,
+  Timestamp,
   deleteDoc,
   doc,
   getDoc,
@@ -26,7 +28,13 @@ export class EventsService {
     private groupsService: GroupsService
   ) {}
 
-  // this works to get all
+  /**
+   * Gets all events in the database
+   * // TODO - Currently is a bit 'dumb' and returns all events
+   * we should have logic to only return events for the specific institution
+   *
+   * @returns collection of data in a specific format - the format is what the calander takes
+   */
   getAllEvents(): Observable<any> {
     const allEventsCollection = collection(this.firestore, 'events');
     return collectionData(allEventsCollection, { idField: 'id' }).pipe(
@@ -45,18 +53,27 @@ export class EventsService {
     );
   }
 
-  // addHighlightedDate(date: string, textColor: string, backgroundColor: string) {
-  //   return this.firestore.collection('highlightedDates').add({
-  //     date: date,
-  //     textColor: textColor,
-  //     backgroundColor: backgroundColor,
-  //   });
-  // }
-
+  /**
+   * formats the date string passed in
+   *
+   * @param date
+   * @returns date in format yyyy-mm-ddd
+   */
   public formatDate(date: Date): string {
     const year = date.getFullYear();
     const month = (date.getMonth() + 1).toString().padStart(2, '0');
     const day = date.getDate().toString().padStart(2, '0');
     return `${year}-${month}-${day}`;
+  }
+
+  /**
+   * Inserts an event into the 'events' collection in firebase.
+   *
+   * @param event
+   * @returns add document to firebase
+   */
+  insertEvent(event: any) {
+    const eventsCollection = collection(this.firestore, 'events');
+    return addDoc(eventsCollection, event);
   }
 }

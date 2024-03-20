@@ -17,9 +17,36 @@
         [(ngModel)]="eventTitle"
       ></ion-input>
     </ion-item>
-    <ion-datetime-button datetime="datetime"></ion-datetime-button>
-    <ion-modal [keepContentsMounted]="true">
-      <ng-template> <ion-datetime id="datetime"></ion-datetime> </ng-template>
-    </ion-modal>
+
+    <ion-item>
+      <ion-label position="stacked">Date and Time *</ion-label>
+      <ion-datetime-button datetime="datetime"></ion-datetime-button>
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime #dateTimePicker id="datetime"></ion-datetime>
+        </ng-template>
+      </ion-modal>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Location *</ion-label>
+      <ion-input
+        name="eventLocation"
+        type="text"
+        [(ngModel)]="eventLocation"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Description *</ion-label>
+      <ion-input
+        name="eventDescription"
+        type="text"
+        [(ngModel)]="eventDescription"
+      ></ion-input>
+    </ion-item>
   </ion-card>
+  <ion-button (click)="insertEvent()">Add Event</ion-button>
+  <ion-button (click)="dismissModal()" class="modalBeGone">Close</ion-button>
+  <ion-button (click)="openGallery()">open gal</ion-button>
 </ion-content>

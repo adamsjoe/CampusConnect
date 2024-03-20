@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PostsService } from '../services/posts.service';
+import { UserService } from '../services/currentUser.service';
 
 @Component({
   selector: 'app-tabs',
@@ -8,8 +9,10 @@ import { PostsService } from '../services/posts.service';
 })
 export class TabsPage {
   unreadPosts: any;
-  constructor(private posts: PostsService) {
-    posts.getPosts().subscribe((data) => {
+  constructor(private posts: PostsService, private userService: UserService) {
+    const userId = this.userService.getUser();
+
+    posts.getUnreadPosts(userId).subscribe((data) => {
       this.unreadPosts = data;
     });
   }

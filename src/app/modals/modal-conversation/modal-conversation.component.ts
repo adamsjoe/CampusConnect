@@ -4,6 +4,7 @@ import { UsersService } from '../../services/users.service';
 import { PostsService } from '../../services/posts.service';
 import { UserService } from '../../services/currentUser.service';
 
+
 @Component({
   selector: 'app-modal-conversation',
   templateUrl: './modal-conversation.component.html',
@@ -44,14 +45,17 @@ export class ModalConversationComponent implements OnInit {
 
   getRelatedPosts(parentPostId: string) {
     console.log('get related post for ', parentPostId);
+     const userId = this.currentUser.getUser();
     this.postsService.getRelatedPosts(parentPostId).subscribe(
       (posts) => {
         this.relatedPosts = this.formatRelatedPosts(posts);
         console.log('Related posts:', this.relatedPosts);
 
+        this.postsService.insertIntoReadPosts(parentPostId, userId);
         // Once related posts are loaded, call getUserInfo for each related post author
         for (const relatedPost of this.relatedPosts) {
           this.getUserInfo(relatedPost.postAuthor);
+          this.postsService.insertIntoReadPosts(relatedPost.postId, userId);
         }
       },
       (error) => {
@@ -114,7 +118,7 @@ export class ModalConversationComponent implements OnInit {
         console.log('whopee');
         this.commentText = '';
       })
-      .catch((error) => {
+      .catch((error: string) => {
         console.error('Error adding post: ', error);
       });
   }
