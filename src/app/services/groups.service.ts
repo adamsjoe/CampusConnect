@@ -122,4 +122,21 @@ export class GroupsService {
       console.error('Error deleting document:', error);
     }
   }
+
+  getGroupColour(type: string): Observable<string | null> {
+    const userJoinedGroupsQuery = query(
+      collection(this.firestore, 'groups'),
+      where('id', '==', type)
+    );
+
+    return collectionData(userJoinedGroupsQuery).pipe(
+      map((groups) => {
+        if (groups && groups.length > 0) {
+          return groups[0]['groupColour'];
+        } else {
+          return null;
+        }
+      })
+    );
+  }
 }

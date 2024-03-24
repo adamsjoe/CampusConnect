@@ -29,6 +29,19 @@
     </ion-item>
 
     <ion-item>
+      <ion-label>Type *</ion-label>
+      <ion-select name="postType" [(ngModel)]="postType">
+        <ion-select-option
+          *ngFor="let group of joinedGroups"
+          [value]="group.id"
+        >
+          {{ group.name }}
+        </ion-select-option>
+        >
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
       <ion-label position="floating">Location *</ion-label>
       <ion-input
         name="eventLocation"
